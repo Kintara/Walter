@@ -27,6 +27,10 @@ Adafruit_MPR121 cap = Adafruit_MPR121();
 uint16_t lasttouched = 0;
 uint16_t currtouched = 0;
 
+bool inRange(int val, int minimum, int maximum)
+{
+  return ((minimum <= val) && (val <= maximum));
+}
 
 
 //++ ++ ++ ++ ++ ++ ++ ++ ++
@@ -900,10 +904,20 @@ void UpdateAirSlider() {
   Air = t_state.toInt();
   if (Air >= 100) {
     Air = 100;
-  }
-   if (Air == 25) {
-    Air = 26;
-  }
+  }  
+if ( inRange(Air, 75, 99) )
+{
+ Air = 75;
+}  
+if ( inRange(Air, 50, 74) )
+{
+ Air = 50;
+}  
+
+if ( inRange(Air, 25, 49) )
+{
+ Air = 26;
+}  
   if (Air <= 24) {
     Air = 0;
   }
@@ -1210,13 +1224,25 @@ void CH_ValueUPISR() {  //Set Value of the channel 0-255
   if (ButtonTime - LastButtonTime >= 500) {
     switch (CH_Number) {
       case 1:
+
         Air = Air + 25;
-          if (Air == 25) {
-          Air = 26;
-        }
-        if (Air >= 101) {
+        
+if ( inRange(Air, 25, 49) )
+{
+ Air = 26;
+}  
+if ( inRange(Air, 50, 74) )
+{
+ Air = 50;
+}  
+if ( inRange(Air, 75, 99) )
+{
+ Air = 75;
+} 
+       if (Air >= 101) {
           Air = 100;
         }
+ 
         break;
       case 2:
         Flow = Flow + 1;
@@ -1234,13 +1260,26 @@ void CH_ValueDownISR() {
   if (ButtonTime - LastButtonTime >= 500) {
     switch (CH_Number) {
       case 1:
-        Air = Air - 25;
+  Air = Air - 25;
+       if (Air <= 24) {
+          Air = 0;}
+if ( inRange(Air, 25, 49) )
+{
+ Air = 26;
+} 
+if ( inRange(Air, 50, 74) )
+{
+ Air = 50;
+}
+ if ( inRange(Air, 75, 99) )
+{
+ Air = 75;
+} 
+/*      
           if (Air == 25) {
-          Air = 26;}
-        if (Air <= 25) {
-          Air = 0;
+          Air = 26;}*/
           break;
-        }
+        
 
       case 2:
         Flow = Flow - 1;
@@ -1320,3 +1359,5 @@ void CH_SelectISR() {
 void handleReset() {
   TouchButtonReset();
 }
+
+
