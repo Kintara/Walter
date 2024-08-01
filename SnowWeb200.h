@@ -119,11 +119,11 @@ td {
   margin: 0 auto;
   height: 150px; 
 }
-.button2:disabled {
-  opacity: 0.25; /* Example: Reduce opacity to indicate disabled state */
+.button2:disabled { /* like the version button
+  opacity: 0.5; /* Example: Reduce opacity to indicate disabled state */
   
            background-color: #8080f0;
-  color: red;    
+  color: black;    
   border: 15px outset black; 
 }
 .button2:disabled:hover {
