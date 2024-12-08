@@ -1,5 +1,6 @@
 # Walter
 Software for ESP32 for the control of a BeamZ 1800Snow machine for Walter the Snowblowing Man
+
 Walter: An Introduction
 
 I’m so pleased to finally get the hardware and 
@@ -17,7 +18,7 @@ The Snow blower is a Blitz Snow 1800 with mods
 and upgrades.
 
 It’s has an auto filling system.
-It has a bespoke digital handset  powered by
+It has a bespoke digital handset powered by
 an ESP32 that can set the interval and duration
 of snow production as well as the force and
 volume of snow.
@@ -32,7 +33,7 @@ manual function to give snow on demand.
 
 It can be set up to be accessible though the home WIFI network or by its own access point.
 
-Inside the body of the snow blower is a Raspberry Pi Zero2 WH with a Hanson MFC,
+Inside the body of the snow blower is a Raspberry Pi Zero2 WH with a Hanson RPi-MFC cape,
 which I use to operate the pixel lights and the P5 panel on Walter the Snowman.
 The RPi can run stored sequences and also connect to a show network to be part of a show.
 
